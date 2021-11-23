@@ -13,3 +13,9 @@ def digit_list(number)
 end
 
 p digit_list(12345)
+
+# idiomatic Ruby solution:
+# number.to_s.chars.map(&:to_i)
+# first, convert number to a string, then split it into an array of
+# numeric characters. Then map said array into an array of integers.
+# (&:to_i) is shorthand for { |char| char.to_i }
