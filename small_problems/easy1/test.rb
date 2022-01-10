@@ -1,5 +1,5 @@
-def sum(pos_int)
-  pos_int.to_s.chars.map(&:to_i).reduce(:+)
+a = [0].partition do |num|
+  num.size > 0
 end
 
-puts sum(496)
+p a
