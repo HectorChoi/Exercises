@@ -6,9 +6,19 @@ class CircularQueue
   end
 
   def enqueue(object)
+    unless @buffer[@next_position].nil?
+      @oldest_position = increment(@next_position)
+    end
+
+    @buffer[@next_position] = object
+    @next_position = increment(@next_position)
   end
 
   def dequeue
+    value = @buffer[@oldest_position]
+    @buffer[@oldest_position] = nil
+    @oldest_position = increment(@oldest_position) unless value.nil?
+    value
   end
 
   private
