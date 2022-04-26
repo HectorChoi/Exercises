@@ -1,3 +1,28 @@
+=begin
+Problem:
+  Create a CircularQueue class that implements a circular queue for arbitrary
+objects
+  The class should obtain the buffer size with an argument provided to
+CircularQueue::new, and should provide the following methods:
+  - enqueue
+    to add an object to the queue
+  - dequeue
+    to remove (and return) the oldest object in the queue. return `nil` if the
+  queue is empty
+
+rules:
+  - you may assume that none of the values stored in the queue are `nil`
+  - however, `nil` may be used to designate empty spots in the buffer
+
+mm:
+  - keep track of both the next position (where the next value stored will go)
+  as well as the oldest position (where the oldest value is stored)
+  - whenever you enqueue a new object, keep track of these values and formulate
+  the logic for them accordingly
+  - be careful about updating the oldest_position - only do so if you're getting
+  rid of an object in the queue
+=end
+
 class CircularQueue
   def initialize(size)
     @buffer = [nil] * size
@@ -6,6 +31,7 @@ class CircularQueue
   end
 
   def enqueue(object)
+    # try to fill in the logic here without looking at the solution
     unless @buffer[@next_position].nil?
       @oldest_position = increment(@next_position)
     end
@@ -15,10 +41,11 @@ class CircularQueue
   end
 
   def dequeue
-    value = @buffer[@oldest_position]
+    # same
+    oldest = @buffer[@oldest_position]
     @buffer[@oldest_position] = nil
-    @oldest_position = increment(@oldest_position) unless value.nil?
-    value
+    @oldest_position = increment(@oldest_position) unless oldest.nil?
+    oldest
   end
 
   private
